@@ -626,3 +626,25 @@ body {
     height: auto;
   }
 
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+        #countdown {
+            position: absolute;
+            font-size: 50px;
+            color: white;
+            z-index: 10;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
