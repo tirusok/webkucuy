@@ -1,0 +1,793 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar with Video Header</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://registry.npmmirror.com/vue/3.3.11/files/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #b7a8a8;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/hack.gif') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .navbar {
+            background-color: #28292e !important;
+        }
+
+        .navbar .nav-link,
+        .navbar .navbar-brand {
+            color: #cbd1d3 !important;
+        }
+
+        .navbar .nav-link:hover {
+            color: #0da67d !important;
+        }
+
+        .navbar-toggler {
+            border: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+        }
+
+        .navbar-toggler-icon span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            margin: 4px auto;
+            background-color: #dadcdd;
+        }
+
+        .header-video {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+        }
+
+        .passionate-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .passionate-card {
+            background: linear-gradient(to right, #1f2937, #111827, #1f2937);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            color: white;
+            max-width: 400px;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .passionate-card img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .passionate-card h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .passionate-card p {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .passionate-card .social-icons a {
+            color: #9ca3af;
+            margin-left: 0.5rem;
+        }
+
+        .passionate-card .social-icons a:hover {
+            color: white;
+        }
+
+        .passionate-image {
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: transparent;
+        }
+
+        .passionate-image img {
+            border-radius: 0.5rem;
+            width: 200px;
+            height: 200px;
+        }
+
+        .project {
+            padding: 3rem 0;
+            background-color: #e9ecef;
+        }
+
+        .project h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .project h1 span {
+            color: #d2d6e3;
+        }
+
+        .container-project {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .field-project {
+            background-color: #fff;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(173, 168, 168, 0.1);
+        }
+
+        .field-project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .field-text-project {
+            padding: 1rem;
+        }
+
+        .field-text-project h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .technology-project a {
+            color: #061a6b;
+            margin-right: 0.5rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .technology-project a:hover {
+            text-decoration: underline;
+        }
+
+        .certification {
+            padding: 3rem 0;
+            background-color: #061260;
+        }
+
+        .certification h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .certification h1 span {
+            color: #bfc0c8;
+        }
+
+        .container-certificate {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .field-certificate {
+            position: relative;
+            width: 200px;
+            height: 250px;
+        }
+
+        .img-certificate {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .icon-eye {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: rgb(18, 14, 14);
+            cursor: pointer;
+        }
+
+        .overlay-image-certificate {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+        }
+
+        .overlay-image-certificate .field-overlay-certificate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .overlay-image-certificate img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .field-certificate:hover .overlay-image-certificate {
+            display: flex;
+        }
+
+        button {
+            background-color: #0b0b0b;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .project-section {
+            background-color: #0052a5;
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .project-section h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #e9eaea;
+            margin-bottom: 2rem;
+        }
+
+        .project-section .project-card {
+            background-color: #3783e0;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #efe4e4;
+            margin-bottom: 1rem;
+        }
+
+        .project-section .project-card h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .project-section .project-card h2 span {
+            color: #b9c2c0;
+        }
+
+        .project-section .project-card p {
+            color: white;
+            margin-top: 0.5rem;
+        }
+
+        .project-section .project-card .tech-stack {
+            margin-top: 1rem;
+        }
+
+        .project-section .project-card .tech-stack span {
+            background-color: #00d9a5;
+            color: #e4f0f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fullscreen Background -->
+    <div class="background"></div>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="#">MyPortfolio</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certificates">Sertifikat</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                &#9776;
+            </div>
+        </nav>
+    </header>
+
+ 
+
+    <script src="script.js"></script>
+
+    <!-- Video below Navbar -->
+    <section>
+        <video class="header-video" autoplay loop>
+            <source src="/naruto.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <!-- Passionate Section -->
+    <section id="about">
+    <div class="passionate-section">
+        <div class="passionate-card">
+            <div class="d-flex align-items-center mb-3">
+                <img src="/tirus1.jpg" alt="Profile picture of a person">
+                <div class="ms-2">
+                    <p class="mb-0">Hi, I'm Ahmad Naufal Tirus.</p>
+                    <p class="mb-0 text-muted">Frontend Developer</p>
+                </div>
+                <div class="ms-auto social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <h1>Passionate to pursue the technology.</h1>
+            <p>I enjoy learning new things and try to overcome new challenges while analyzing how I improved through them.</p>
+        </div>
+    </div>
+
+    <!-- SKILLS -->
+    <section id="skills">
+    <section class="skill" id="skill">
+        <h1>My <span>Skills</span></h1>
+        <div class="container-image-skill">
+            <div class="field-image-skill" data-aos="flip-left">
+                <img src="img/logo_html.png" alt="" class="image-skill">
+                <span>HTML</span>
+            </div>
+            <div class="field-image-skill">
+                <img src="img/logo_css.png" alt="" class="image-skill">
+                <span>CSS</span>
+            </div>
+            <div class="field-image-skill">
+                <img src="img/logo_javascript.png" alt="" class="image-skill">
+                <span>JAVASCRIPT</span>
+            </div>
+            <div class="field-image-skill">
+                <img src="img/proto/p10.png" alt="" class="image-skill">
+                <span>Linux</span>
+            </div>
+            <div class="field-image-skill">
+                <img src="img/proto/p8.png" alt="" class="image-skill">
+                <span>CISCO</span>
+            </div>
+            <div class="field-image-skill">
+                <img src="img/proto/p11.png" alt="" class="image-skill">
+                <span>kali Linux </span>
+            </div>
+            <div class="field-image-skill">
+                <img src="img/proto/Figma’s new icon.jpeg" alt="" class="image-skill">
+                <span>FIgma</span>
+            </div>
+            <div class="field-image-skill">
+                <img src="img/logo_github.png" alt="" class="image-skill">
+                <span>GITHUB</span>
+            </div>
+        </div>
+    </section>
+    <!--SKILLS -->
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <section class="project-section" id="project">
+            <h1>Project</h1>
+            <div class="container mx-auto p-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="project-card">
+                        <img src="/img/proto/p1.png" alt="Desain Web Project" class="project-image">
+                        <h2>Web edupioner<span> Projek lomba</span></h2>
+                        <p>Membuat website untuk menyediakan info lomba,volunteer, beasiswa,pertukaran pelajar</p>
+                        <div class="tech-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>js</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="img/proto/p2.png" class="project-image">
+                        <h2>Web edupioner <span></span></h2>
+                        <p>Projek lomba</p>
+                        <div class="tech-stack">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JS</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="/img/proto/p3.png" alt="Desain Pengalaman Pengguna Project" class="project-image">
+                        <h2>Prototype<span>Projek lomba</span></h2>
+                        <p>Ui/UX Tentang "Aplikasi Terintegrasi untuk Pengelolaan Sampah Organik dan Penyediaan Kemasa Ramah Lingkungan di Indonesia"</p>
+                        <div class="tech-stack">
+                            <span>FIGMA</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="/img/proto/p4.png" alt="Desain Game Project" class="project-image">
+                        <h2><span>Projek lomba</span></h2>
+                        <p>Implementasi User Experience Design dalam 
+                          Pengembangan Aplikasi YukKnabung sebagai Solusi 
+                          Pengelolaan Keuangan Digital untuk Generasi Muda 
+                          Indonesia" </p>
+                        <div class="tech-stack">
+                            <span>FIGMA</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                      <img src="/img/proto/p5 (2).png" alt="Desain Game Project" class="project-image">
+                      <h2>UI/UX<span> Projek lomba</span></h2>
+                      <p>"CropDoctor: AI-Based Plant Disease Diagnosis Application with 
+                        Solution Recommendations and User-Friendly Interface for Modern 
+                        Farmers"y</p>
+                      <div class="tech-stack">
+                          <span>FIGMA</span>
+                      </div>
+                  </div>
+                  <div class="project-card">
+                    <img src="/img/proto/p6.jpg" alt="Desain Game Project" class="project-image">
+                    <h2>web resto<span> Projek Talenthub</span></h2>
+                    <p>Menjualkan berbagai menu nasgor dan mie ayam</p>
+                    <div class="tech-stack">
+                        <span>FIGMA</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                  <img src="/img/proto/p7.jpg" alt="Desain Game Project" class="project-image">
+                  <h2>Projek Matkul<span> Konfigurasi Jaringan internet</span></h2>
+                  <p>Menggunakan Routing dinamis</p>
+                  <div class="tech-stack">
+                      <span>CISCO</span>
+                  </div>
+              </div>
+                </div>
+            </div>
+        </section>
+        
+
+    <!-- Certification Section -->
+    <section id="certificates">
+    <section class="certification" id="certification">
+        <h1><span>Certification</span></h1>
+        <div class="container mx-auto py-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 1" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal1')" src="/img/1s.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Participation
+                  </h2>
+                  <p class="text-gray-600">
+                 Jatim Developer day
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 2" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal2')" src="/img/2s.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Excellence
+                  </h2>
+                  <p class="text-gray-600">
+                    Linux Administration System
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 3" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal3')" src="/img/3s.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Participation
+                  </h2>
+                  <p class="text-gray-600">
+                    Talenthub
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 4" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal4')" src="/img/4s.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Achievement
+                  </h2>
+                  <p class="text-gray-600">
+                  Cyber Security
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 5" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal5')" src="/img/5s.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Achievement
+                  </h2>
+                  <p class="text-gray-600">
+                  Telah kompeten 
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 6" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal6')" src="/img/6s.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Achievement
+                  </h2>
+                  <p class="text-gray-600">
+                  kompeten
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 7" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal7')" src="/img/8.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Achievement
+                  </h2>
+                  <p class="text-gray-600">
+                    Finalist
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 8" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal8')" src="/img/8s.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Achievement
+                  </h2>
+                  <p class="text-gray-600">
+                 Finalist
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 9" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal9')" src="/img/Juara kuy.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Achievement
+                  </h2>
+                  <p class="text-gray-600">
+                Winner
+                  </p>
+                </div>
+              </div>
+              <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <img alt="Certificate 10" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('modal10')" src="/img/sertif ecs.png"/>
+                <div class="p-4">
+                  <h2 class="text-lg font-semibold">
+                    Certificate of Achievement
+                  </h2>
+                  <p class="text-gray-600">
+                  Alibaba
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <!-- Modals -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal1')">&times;</span>
+              <img src="/img/1s.png" alt="Certificate 1">
+            </div>
+          </div>
+          <div id="modal2" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal2')">&times;</span>
+              <img src="/img/2s.png" alt="Certificate 2">
+            </div>
+          </div>
+          <div id="modal3" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal3')">&times;</span>
+              <img src="/img/3s.png" alt="Certificate 3">
+            </div>
+          </div>
+          <div id="modal4" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal4')">&times;</span>
+              <img src="/img/4s.png" alt="Certificate 4">
+            </div>
+          </div>
+          <div id="modal5" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal5')">&times;</span>
+              <img src="/img/5s.png" alt="Certificate 5">
+            </div>
+          </div>
+          <div id="modal6" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal6')">&times;</span>
+              <img src="/img/6s.png" alt="Certificate 6">
+            </div>
+          </div>
+          <div id="modal7" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal7')">&times;</span>
+              <img src="/img/8.png" alt="Certificate 7">
+            </div>
+          </div>
+          <div id="modal8" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal8')">&times;</span>
+              <img src="/img/8s.png" alt="Certificate 8">
+            </div>
+          </div>
+          <div id="modal9" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal9')">&times;</span>
+              <img src="/img/Juara kuy.png" alt="Certificate 9">
+            </div>
+          </div>
+          <div id="modal10" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('modal10')">&times;</span>
+              <img src="/img/sertif ecs.png" alt="Certificate 10">
+            </div>
+          </div>
+        
+          <script>
+            function openModal(modalId) {
+              document.getElementById(modalId).style.display = "block";
+            }
+        
+            function closeModal(modalId) {
+              document.getElementById(modalId).style.display = "none";
+            }
+          </script>         
+        
+                    <!-- Personal Gallery Section -->
+                    <section id="gallery">
+                    <body class="bg-[#0A0F29] text-white">
+                        <div class="p-8" id="app">
+                        <h1 class="text-center text-2xl font-bold text-[#C4FF00] mb-8">
+                        Personal Gallery
+                        </h1>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 1" class="w-full h-64 object-cover" height="300" src="/img/g/g1.JPG" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                            Google developer ITS
+                            </h2>
+                            <p class="text-black">
+                             PARTY MEMBER
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 2" class="w-full h-64 object-cover" height="300" src="/img/g/g2.JPG" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                              Google developer ITS
+                            </h2>
+                            <p class="text-black">
+                              PARTY MEMBER
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 3" class="w-full h-64 object-cover" height="300" src="/img/g/gg.jpg" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                         Jatim Developer Day
+                            </h2>
+                            <p class="text-black">
+                           Komunitas Developer Jatim  
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 4" class="w-full h-64 object-cover" height="300" src="/img/g/WhatsApp Image 2024-12-29 at 14.42.31_deb760e8.jpg" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                           Lagi Lsp cuy
+                            </h2>
+                            <p class="text-black">
+                            Lagi focuss splicing fiber hehe
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 5" class="w-full h-64 object-cover" height="300" src="/img/g/WhatsApp Image 2024-12-29 at 14.42.43_b957cc51.jpg" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                        fotbar bersama orang penting smeas
+                            </h2>
+                            <p class="text-black">
+                           Pembukaan Lsp
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 6" class="w-full h-64 object-cover" height="300" src="/img/g/WhatsApp Image 2024-12-29 at 14.42.45_92ae9cee.jpg" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                            Grand final Cakning vokasi 
+                            </h2>
+                            <p class="text-black">
+                           Finalist
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 7" class="w-full h-64 object-cover" height="300" src="img/g/WhatsApp Image 2024-12-29 at 14.42.46_c91cdbfd.jpg" width="900"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                        Lagi kumpul bersama anak teknik
+                            </h2>
+                            <p class="text-black">
+                           Tidak ada sepuh sepub di circle kami
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 8" class="w-full h-64 object-cover" height="300" src="/img/g/WhatsApp Image 2024-12-29 at 14.42.49_51e7d797.jpg" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                           Random wkwk
+                            </h2>
+                            <p class="text-black">
+                           Lagi fokus pkk
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 9" class="w-full h-64 object-cover" height="300" src="/img/g/WhatsApp Image 2024-12-29 at 14.42.50_dc57f54f.jpg" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                              fotbar bersama sepuhh
+                            </h2>
+                            <p class="text-black">
+                           Trio smeas
+                            </p>
+                        </div>
+                        </div>
+                        <div class="bg-white rounded-lg overflow-hidden">
+                        <img alt="Portrait 10" class="w-full h-64 object-cover" height="300" src="/img/g/WhatsApp Image 2024-12-29 at 14.42.47_c324a16d.jpg" width="300"/>
+                        <div class="bg-[#C4FF00] p-4">
+                            <h2 class="text-black text-lg font-bold">
+                            Kamera roll eksen haha
+                            </h2>
+                            <p class="text-black">
+                           Trio smeas
+                            </p>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <script>
+                        const { createApp } = Vue;
+                        createApp({}).mount('#app');
+                        </script>
