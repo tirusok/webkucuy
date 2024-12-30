@@ -334,28 +334,12 @@
 
     <!-- Video below Navbar -->
     <section>
-        <video id="myVideo" loop>
-        <source src="/naruto.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+        <video class="header-video" autoplay loop>
+            <source src="/naruto.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </section>
-   <script>
-        const countdown = document.getElementById('countdown');
-        const video = document.getElementById('myVideo');
-        
-        let timeLeft = 3; // Start countdown from 3 seconds
 
-        const timer = setInterval(() => {
-            timeLeft--;
-            countdown.textContent = timeLeft;
-
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                countdown.style.display = 'none'; // Hide countdown
-                video.play(); // Play the video
-            }
-        }, 1000); // Update every second
-    </script>
     <!-- Passionate Section -->
     <section id="about">
     <div class="passionate-section">
@@ -474,7 +458,7 @@
                       </div>
                   </div>
                   <div class="project-card">
-                    <img src="/img/proto/ptalent.jpg" alt="Desain Game Project" class="project-image">
+                    <img src="/img/proto/p6.jpg" alt="Desain Game Project" class="project-image">
                     <h2>web resto<span> Projek Talenthub</span></h2>
                     <p>Menjualkan berbagai menu nasgor dan mie ayam</p>
                     <div class="tech-stack">
